@@ -283,6 +283,71 @@ Google Drive / Google Sheets
 
 <hr/>
 
+<h1>🧠 Agent Responsibilities</h1>
+
+<table>
+  <tr><th>Agent</th><th>Primary Responsibility</th><th>Key Outputs</th></tr>
+  <tr>
+    <td>Ingest Agent</td>
+    <td>Acquire raw data from external sources (Gmail, Drive, APIs)</td>
+    <td>RAW files, metadata entries</td>
+  </tr>
+  <tr>
+    <td>Clean Agent</td>
+    <td>Normalize, validate, and convert raw data into structured formats</td>
+    <td>CLEAN datasets (CSV / JSON)</td>
+  </tr>
+  <tr>
+    <td>Analyze Agent</td>
+    <td>Compute KPIs, metrics, and analytical insights</td>
+    <td>GOLD datasets, KPI tables</td>
+  </tr>
+  <tr>
+    <td>Report Agent</td>
+    <td>Generate summaries, reports, and shareable outputs</td>
+    <td>Reports, Drive links</td>
+  </tr>
+</table>
+
+<p>
+Each agent is independently deployable, restart-safe, and stateless, ensuring
+fault isolation and operational resilience.
+</p>
+
+<hr/>
+
+<h1>🗄️ Data Lake Design</h1>
+
+<p>
+ANIS enforces a strict, enterprise-grade data lake lifecycle to guarantee
+traceability, reproducibility, and governance.
+</p>
+
+<table>
+  <tr><th>Zone</th><th>Description</th><th>Mutability</th></tr>
+  <tr>
+    <td>RAW</td>
+    <td>Original ingested data (unchanged, immutable)</td>
+    <td>Read-only</td>
+  </tr>
+  <tr>
+    <td>CLEAN</td>
+    <td>Normalized, schema-aligned datasets</td>
+    <td>Rebuildable</td>
+  </tr>
+  <tr>
+    <td>GOLD</td>
+    <td>Analytics-ready, business-consumable outputs</td>
+    <td>Versioned</td>
+  </tr>
+</table>
+
+<pre>
+RAW → CLEAN → GOLD
+</pre>
+
+<hr/>
+
 <h1>🧪 Testing & Validation</h1>
 <table border="1">
 <tr>
@@ -294,6 +359,57 @@ Google Drive / Google Sheets
 <tr>
 <td>T02</td><td>Clean</td><td>Agent clean</td><td>CLEAN files created</td><td>Normalization</td>
 </tr>
+</table>
+
+<hr/>
+
+<h1>🔍 Validation Summary</h1>
+
+<ul>
+  <li>All inbound requests validated via OpenAPI schemas</li>
+  <li>All transformations validated against structural schemas</li>
+  <li>All outputs verified before persistence</li>
+  <li>No silent failures or implicit transformations</li>
+</ul>
+
+<p>
+Validation is enforced at every boundary to ensure deterministic behavior
+across environments.
+</p>
+
+<hr/>
+
+<h1>🧰 Verification Tools</h1>
+
+<table>
+  <tr><th>Tool</th><th>Purpose</th></tr>
+  <tr><td>Postman</td><td>Manual API verification</td></tr>
+  <tr><td>n8n UI</td><td>Workflow execution tracing</td></tr>
+  <tr><td>Google Sheets</td><td>Log and KPI verification</td></tr>
+  <tr><td>Drive Audit Logs</td><td>Artifact validation</td></tr>
+</table>
+
+<hr/>
+
+<h1>🧯 Troubleshooting</h1>
+
+<table>
+  <tr><th>Issue</th><th>Likely Cause</th><th>Resolution</th></tr>
+  <tr>
+    <td>Webhook returns 400</td>
+    <td>Schema violation</td>
+    <td>Validate request payload</td>
+  </tr>
+  <tr>
+    <td>No files generated</td>
+    <td>OAuth permission issue</td>
+    <td>Reauthorize Google credentials</td>
+  </tr>
+  <tr>
+    <td>Scheduled job not running</td>
+    <td>Cron workflow disabled</td>
+    <td>Enable workflow in n8n</td>
+  </tr>
 </table>
 
 <hr/>
@@ -322,6 +438,79 @@ git clone repo
 cp .env.example .env
 npm install
 n8n start
+</pre>
+
+<hr/>
+
+<h1>🧾 Usage Notes</h1>
+
+<ul>
+  <li>Designed for non-technical operators</li>
+  <li>All execution controlled via structured intent</li>
+  <li>No manual data manipulation required</li>
+  <li>Safe for repeated execution</li>
+</ul>
+
+<hr/>
+
+<h1>🧠 Performance & Optimization</h1>
+
+<ul>
+  <li>Parallel agent execution where applicable</li>
+  <li>Stateless workflows reduce memory overhead</li>
+  <li>Incremental processing minimizes rework</li>
+  <li>Serverless OCR scales automatically</li>
+</ul>
+
+<hr/>
+
+<h1>🌟 Enhancements</h1>
+
+<ul>
+  <li>Multi-tenant support</li>
+  <li>Role-based access control</li>
+  <li>Advanced KPI dashboards</li>
+  <li>Pluggable data sources</li>
+</ul>
+
+<hr/>
+
+<h1>🧩 Maintenance & Future Work</h1>
+
+<ul>
+  <li>Schema versioning strategy</li>
+  <li>Automated regression validation</li>
+  <li>Agent marketplace expansion</li>
+  <li>Enterprise monitoring integration</li>
+</ul>
+
+<hr/>
+
+<h1>🏆 Key Achievements</h1>
+
+<ul>
+  <li>Production-grade AI control plane</li>
+  <li>Full auditability and governance</li>
+  <li>Zero hardcoded logic</li>
+  <li>Enterprise-ready automation framework</li>
+</ul>
+
+<hr/>
+
+<h1>🧮 High-Level Architecture</h1>
+
+<pre>
+User / System
+     |
+   GPT
+     |
+OpenAPI Action
+     |
+   n8n
+     |
+Agents (Ingest → Clean → Analyze → Report)
+     |
+Google Drive / Google Sheets
 </pre>
 
 <hr/>
