@@ -212,73 +212,164 @@ Styling, visualization, and reporting are delegated to Google Workspace and GPT 
 
 <hr/>
 
-<h2>🚀 Features</h2>
+<h1>🚀 Features</h1>
+<p>
+ANIS (Autonomous Neural Intelligence Supervisor) is a <strong>production-grade AI Factory Control Plane</strong>
+that unifies <strong>LLM intent, workflow orchestration, and enterprise data engineering</strong>
+into a single deterministic, auditable, and scalable platform.
+Unlike typical AI automations, ANIS enforces <strong>strict governance, contract-first execution,
+and end-to-end data lineage</strong>.
+</p>
 
-<ul>
-  <li>Agent-based modular automation</li>
-  <li>Schema-enforced command execution</li>
-  <li>Data normalization and conversion pipelines</li>
-  <li>Integrated OCR for unstructured documents</li>
-  <li>Enterprise-grade logging and audit trails</li>
-  <li>Cron-based scheduled automation</li>
-</ul>
+<h3>1. Core Capability Domains</h3>
+<table border="1">
+<tr><th>Domain</th><th>Capability</th><th>Enterprise-Grade Implementation</th></tr>
 
-<hr/>
+<tr>
+<td>AI Governance</td>
+<td>Schema-Locked GPT Control</td>
+<td>GPT is sandboxed by OpenAPI + JSON Schema. It cannot generate arbitrary commands or bypass workflows.</td>
+</tr>
 
-<h2>🧱 Tech Stack & Architecture</h2>
+<tr>
+<td>Orchestration</td>
+<td>Agent-Based Execution Fabric</td>
+<td>Each business function is isolated into independently deployable Ingest, Clean, Analyze, and Report agents.</td>
+</tr>
 
-<table>
-  <tr><th>Layer</th><th>Technology</th></tr>
-  <tr><td>AI Interface</td><td>Custom GPT + OpenAPI Actions</td></tr>
-  <tr><td>Orchestration</td><td>n8n</td></tr>
-  <tr><td>Storage</td><td>Google Drive (RAW / CLEAN / GOLD)</td></tr>
-  <tr><td>Metadata</td><td>Google Sheets (Catalog, Logs)</td></tr>
-  <tr><td>OCR</td><td>Serverless (Vercel)</td></tr>
-  <tr><td>Schemas</td><td>YAML / JSON Schema</td></tr>
+<tr>
+<td>Data Engineering</td>
+<td>RAW → CLEAN → GOLD Data Lake</td>
+<td>Immutable RAW inputs, reproducible CLEAN data, and versioned GOLD analytics.</td>
+</tr>
+
+<tr>
+<td>Observability</td>
+<td>Enterprise Event Ledger</td>
+<td>Every API call, transformation, KPI, and file write is logged into Google Sheets with timestamps.</td>
+</tr>
+
+<tr>
+<td>Unstructured Data</td>
+<td>OCR & Document Intelligence</td>
+<td>Serverless OCR extracts text from PDFs and images and feeds it into the CLEAN pipeline.</td>
+</tr>
+
+<tr>
+<td>Automation</td>
+<td>Cron-Driven Autonomy</td>
+<td>Fully automated daily execution via scheduled workflows.</td>
+</tr>
 </table>
 
-<p><strong>Component Architecture:</strong></p>
-
+<h3>2. Feature Execution Flow</h3>
 <pre>
-[ GPT ]
-   |
-[ Action Schema ]
-   |
-[ n8n Controller ]
-   |-- Ingest Agent
-   |-- Clean Agent
-   |-- Analyze Agent
-   |-- Report Agent
-   |
-[ Drive / Sheets ]
+User / System
+      ↓
+Custom GPT (Intent → Structured JSON)
+      ↓
+OpenAPI Schema Validation
+      ↓
+n8n Control Plane
+      ↓
+Ingest → Clean → Analyze → Report
+      ↓
+Enterprise Data Lake + KPI Ledger
 </pre>
 
 <hr/>
 
-<h2>🛠️ Workflow & Implementation</h2>
+<h1>🧱 Tech Stack & Architecture</h1>
 
-<p><strong>High-Level Execution Flow:</strong></p>
+<h3>1. Technology Layers</h3>
+<table border="1">
+<tr><th>Layer</th><th>Technology</th><th>Role</th></tr>
+<tr><td>AI Interface</td><td>Custom GPT + OpenAPI</td><td>Intent parsing, schema-validated command generation</td></tr>
+<tr><td>Orchestration</td><td>n8n</td><td>Workflow execution engine and control plane</td></tr>
+<tr><td>Data Lake</td><td>Google Drive</td><td>RAW / CLEAN / GOLD storage</td></tr>
+<tr><td>Metadata & Logs</td><td>Google Sheets</td><td>Catalogs, KPIs, audit trails</td></tr>
+<tr><td>OCR</td><td>Vercel Serverless</td><td>PDF & image text extraction</td></tr>
+<tr><td>Contracts</td><td>JSON Schema + YAML</td><td>Validation and deterministic execution</td></tr>
+</table>
 
+<h3>2. Control Plane Architecture</h3>
 <pre>
-GPT Prompt
+┌──────────────┐
+│ User / API   │
+└──────┬───────┘
+       ↓
+┌──────────────────────┐
+│ Custom GPT           │
+│ (Intent Interpreter) │
+└──────┬───────────────┘
+       ↓
+┌──────────────────────┐
+│ OpenAPI + JSON Schema│
+│ (Contract Layer)     │
+└──────┬───────────────┘
+       ↓
+┌──────────────────────┐
+│ n8n Orchestration    │
+│ (Execution Fabric)  │
+└──────┬───────────────┘
+       ↓
+┌─────────────────────────────┐
+│ Ingest | Clean | Analyze |  │
+│ Report (Stateless Agents)   │
+└──────┬──────────────────────┘
+       ↓
+┌─────────────────────────────┐
+│ Google Drive (RAW/CLEAN/GOLD)│
+│ Google Sheets (Logs/KPIs)    │
+└─────────────────────────────┘
+</pre>
+
+<hr/>
+
+<h1>🛠️ Workflow & Implementation</h1>
+
+<h3>1. End-to-End Execution Pipeline</h3>
+<pre>
+User Prompt
    ↓
-Custom GPT Action (Schema Validation)
+GPT → Intent → JSON Command
+   ↓
+OpenAPI Schema Validation
    ↓
 ANIS Webhook
    ↓
-n8n Orchestration Engine
+n8n Control Plane
    ↓
-[ Ingest → Clean → Analyze → Report ]
+Agent Pipelines
    ↓
-Google Drive / Google Sheets
+Data Lake + KPI Ledger
 </pre>
 
-<p><strong>Implementation Characteristics:</strong></p>
+<h3>2. Agent Workflow Topology</h3>
+<pre>
+        ┌─────────────┐
+        │   Ingest    │ → Gmail, APIs, Drive
+        └─────┬───────┘
+              ↓
+        ┌─────────────┐
+        │    Clean    │ → Normalize, OCR, validate
+        └─────┬───────┘
+              ↓
+        ┌─────────────┐
+        │   Analyze   │ → KPIs, metrics, insights
+        └─────┬───────┘
+              ↓
+        ┌─────────────┐
+        │   Report    │ → Summaries, links
+        └─────────────┘
+</pre>
+
+<h3>3. Reliability & Determinism</h3>
 <ul>
-  <li>Event-driven execution</li>
-  <li>Stateless workflow steps</li>
-  <li>Explicit agent boundaries</li>
-  <li>Retry-safe and observable</li>
+<li>Stateless workflows allow safe retries.</li>
+<li>Schema validation prevents malformed executions.</li>
+<li>All data transformations are reproducible.</li>
+<li>Failures are isolated to individual agents.</li>
 </ul>
 
 <hr/>
@@ -500,18 +591,41 @@ n8n start
 <h1>🧮 High-Level Architecture</h1>
 
 <pre>
-User / System
-     |
-   GPT
-     |
-OpenAPI Action
-     |
-   n8n
-     |
-Agents (Ingest → Clean → Analyze → Report)
-     |
-Google Drive / Google Sheets
+┌──────────────────┐
+│  Human / System  │
+└───────┬──────────┘
+        ↓
+┌────────────────────────┐
+│   Custom GPT Control   │
+│   (Intent → JSON)      │
+└───────┬────────────────┘
+        ↓
+┌────────────────────────┐
+│ OpenAPI + JSON Schema  │
+│ (Contract Enforcement)│
+└───────┬────────────────┘
+        ↓
+┌────────────────────────┐
+│     n8n Control Plane  │
+│  (Workflow Execution) │
+└───────┬────────────────┘
+        ↓
+┌────────────────────────────────┐
+│ Ingest → Clean → Analyze →      │
+│ Report (Stateless AI Agents)    │
+└───────┬────────────────────────┘
+        ↓
+┌────────────────────────────────┐
+│ Google Drive (RAW/CLEAN/GOLD)   │
+│ Google Sheets (Logs & KPIs)    │
+└────────────────────────────────┘
 </pre>
+
+<p>
+This architecture guarantees <strong>governed, deterministic, and auditable AI execution</strong>,
+making ANIS suitable for <strong>enterprise analytics, compliance-driven workflows,
+and production-grade AI operations</strong>.
+</p>
 
 <hr/>
 
