@@ -1,7 +1,22 @@
-<h1>🏷️ Project Title</h1>
-<h2>ANIS – Personal AI Factory Controller</h2>
+<div align="center">
+  <img 
+    src="assets/NeuroFactory AI Control Plane.png" 
+    alt="NeuroFactory AI Control Plane Logo Animation"
+    width="100%"
+  />
 
-<hr/>
+  <h1 style="font-size: 3em; font-weight: 800; margin: 0.4em 0 0;">
+    ANIS – NeuroFactory AI Control Plane 
+  </h1>
+
+  <h3 style="margin-top: 0.6em;">
+    Autonomous AI Orchestration. Precision Pipelines. Scalable Intelligence. 
+  </h3>
+
+  <p>
+    <em>A next-generation AI automation control plane engineered to transform fragmented workflows into a unified, intelligent execution system. NeuroFactory integrates Custom GPT Actions, n8n orchestration, Google Workspace automation, and serverless OCR into a modular, schema-driven architecture that enables seamless data ingestion, normalization, analysis, and reporting.  </em>
+  </p>
+</div>
 
 <h1>🧾 Executive Summary</h1>
 <p>
