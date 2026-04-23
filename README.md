@@ -20,7 +20,7 @@
 
 <h1>🧾 Executive Summary</h1>
 <p>
-ANIS (Autonomous Neural Intelligence Supervisor) is an enterprise-grade Personal AI Factory Controller
+ANIS (Autonomous Neural Intelligence Supervisor) is an enterprise-grade NeuroFactory AI Controller
 designed to orchestrate complex data ingestion, transformation, analysis, and reporting workflows
 through a single, intent-driven interface. The system combines Custom GPT Actions, n8n workflow
 orchestration, Google Workspace automation, and a serverless OCR microservice to deliver a
